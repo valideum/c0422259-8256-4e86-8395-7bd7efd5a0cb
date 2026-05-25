@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IoT-Enabled Automated Greenhouse Management System – Never lose another plant to environmental stress again. Professional-grade automation for hobbyists and small farms.">
+    <title>GreenGuard IoT – Automated Greenhouse Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32',
+                        'primary-dark': '#1B5E20',
+                        secondary: '#A5D6A7',
+                        accent: '#F9A825',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(249, 168, 37, 0.4); }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(46, 125, 50, 0.15); }
+        .transition-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hero-overlay { background: linear-gradient(135deg, rgba(27, 94, 32, 0.82) 0%, rgba(46, 125, 50, 0.65) 50%, rgba(0, 0, 0, 0.45) 100%); }
+        .testimonial-card { transition: transform 0.3s ease; }
+        .testimonial-card:hover { transform: scale(1.03); }
+        .pulse-dot { animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .step-number { background: linear-gradient(135deg, #2E7D32, #1B5E20); }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-white">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <span class="text-xl font-extrabold text-primary-dark tracking-tight">GreenGuard</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#features" class="text-gray-600 hover:text-primary transition-colors">Features</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-primary transition-colors">How It Works</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-primary transition-colors">Reviews</a>
+                    <a href="#cta" class="bg-accent text-white px-5 py-2.5 rounded-full font-semibold hover:shadow-lg transition-all">Get Started</a>
+                </div>
+                <button class="md:hidden text-primary-dark text-2xl" id="mobile-menu-btn">☰</button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-4 pb-4 space-y-3 text-sm font-medium">
+            <a href="#features" class="block py-2 text-gray-600 hover:text-primary">Features</a>
+            <a href="#how-it-works" class="block py-2 text-gray-600 hover:text-primary">How It Works</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-primary">Reviews</a>
+            <a href="#cta" class="block py-3 text-center bg-accent text-white rounded-full font-semibold">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://loremflickr.com/1920/1080/greenhouse,modern,plants,iot" alt="Modern greenhouse with IoT sensors" class="object-cover w-full h-full" loading="eager">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Decorative sensor UI overlay elements -->
+        <div class="absolute top-20 right-10 z-0 hidden lg:block opacity-30">
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30 w-56">
+                <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 bg-green-400 rounded-full pulse-dot"></span><span class="text-white text-xs font-medium">Sensors Active</span></div>
+                <div class="space-y-2 text-white text-xs">
+                    <div class="flex justify-between"><span>🌡️ Temp</span><span>24.5°C</span></div>
+                    <div class="flex justify-between"><span>💧 Humidity</span><span>68%</span></div>
+                    <div class="flex justify-between"><span>☀️ Light</span><span>82%</span></div>
+                    <div class="flex justify-between"><span>🌱 Soil</span><span>Optimal</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+            <!-- Trust badge -->
+            <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-4 py-2 mb-8">
+                <span class="text-yellow-400 text-sm">★★★★★</span>
+                <span class="text-white/90 text-sm font-medium">Trusted by 500+ small-scale growers</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
+                Never Lose Another Plant to<br class="hidden sm:block"> Environmental Stress Again
+            </h1>
+            <p class="text-xl sm:text-2xl text-white/90 font-medium mb-4 max-w-2xl mx-auto">
+                Professional-grade automated greenhouse management, simplified for hobbyists and small farms.
+            </p>
+            <p class="text-base sm:text-lg text-white/75 mb-10 max-w-xl mx-auto">
+                Stop guessing. Our IoT sensors monitor humidity, temperature, and more so you can grow with confidence.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#cta" class="btn-accent inline-block bg-accent text-primary-dark text-lg font-bold px-8 py-4 rounded-full shadow-xl transition-all duration-300">
+                    Automate Your Yield Today
+                </a>
+                <a href="#features" class="inline-flex items-center gap-2 text-white/85 hover:text-white font-medium transition-colors">
+                    See how it works
+                    <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                </a>
+            </div>
+            <p class="mt-8 text-white/60 text-sm">As seen on r/gardening, HomeAssistant Community</p>
+        </div>
+    </header>
+
+    <!-- ========== PROBLEM / PAIN POINTS ========== -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-dark text-center mb-4">
+                The Daily Struggle of Every Greenhouse Owner
+            </h2>
+            <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">Sound familiar? You're not alone. Thousands of growers face these same challenges every season.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-md card-hover transition-card text-center">
+                    <div class="text-5xl mb-4">😟</div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-3">Constant Anxiety</h3>
+                    <p class="text-gray-600">Every time you leave the greenhouse, you wonder: <em>"Will my sensitive orchids survive today's heat spike?"</em> The stress of not knowing is exhausting.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-md card-hover transition-card text-center">
+                    <div class="text-5xl mb-4">😤</div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-3">Endless Manual Labor</h3>
+                    <p class="text-gray-600">Checking thermometers, adjusting vents, misting by hand — it's a second full-time job. Hours lost to repetitive, tedious monitoring.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-md card-hover transition-card text-center">
+                    <div class="text-5xl mb-4">💸</div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-3">Financial Gut Punches</h3>
+                    <p class="text-gray-600">A single missed humidity swing can wipe out an entire crop batch. For small farms, that's margin — and sometimes the mortgage — on the line.</p>
+                </div>
+            </div>
+
+            <p class="text-center mt-10 text-lg text-accent font-semibold">There's a better way…</p>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES & BENEFITS ========== -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary-dark mb-4">
+                    Finally, a Greenhouse That Takes Care of Itself
+                </h2>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Effortlessly maintain the perfect greenhouse environment with automated precision, saving both your time and your plants.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover transition-card">
+                    <div class="w-14 h-14 bg-secondary/30 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-primary-dark mb-2">Real-time Environmental Monitoring</h3>
+                    <p class="text-gray-600 text-sm mb-3">Humidity, temperature, light, and soil moisture — all streamed live to your phone or computer.</p>
+                    <span class="inline-block text-xs font-semibold text-primary bg-secondary/40 px-3 py-1 rounded-full">Prevent stress events before they happen</span>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover transition-card">
+                    <div class="w-14 h-14 bg-secondary/30 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-primary-dark mb-2">Automated Climate Control Alerts</h3>
+                    <p class="text-gray-600 text-sm mb-3">Set ideal ranges. Get alerted the moment conditions drift — then let our system auto-correct via connected fans, vents, or misters.</p>
+                    <span class="inline-block text-xs font-semibold text-primary bg-secondary/40 px-3 py-1 rounded-full">Hands-free peace of mind</span>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover transition-card">
+                    <div class="w-14 h-14 bg-secondary/30 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-primary-dark mb-2">Data-Driven Growth Insights</h3>
+                    <p class="text-gray-600 text-sm mb-3">Historical analytics reveal what works best for each plant variety. Fine-tune light, VPD, and irrigation for maximum yield.</p>
+                    <span class="inline-block text-xs font-semibold text-primary bg-secondary/40 px-3 py-1 rounded-full">Professional results without the guesswork</span>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm card-hover transition-card">
+                    <div class="w-14 h-14 bg-secondary/30 rounded-xl flex items-center justify-center mb-5">
+                        <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 16l-4-4 4-4m6 8l4-4-4-4"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-primary-dark mb-2">Plug &amp; Play Simplicity</h3>
+                    <p class="text-gray-600 text-sm mb-3">Pre-configured sensor nodes pair in minutes. No soldering, no complex coding. Works with your existing Wi‑Fi.</p>
+                    <span class="inline-block text-xs font-semibold text-primary bg-secondary/40 px-3 py-1 rounded-full">No engineering degree required</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section id="how-it-works" class="py-20 bg-secondary/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-dark text-center mb-4">
+                From Box to Botanist in 3 Easy Steps
+            </h2>
+            <p class="text-gray-500 text-center mb-16 max-w-xl mx-auto">No coding. No complicated setup. Just plug in and let your greenhouse thrive.</p>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="relative mx-auto w-48 h-48 rounded-2xl overflow-hidden shadow-lg mb-6">
+                        <img src="https://loremflickr.com/400/400/soil,sensor,planting" alt="Place sensors in soil" class="object-cover w-full h-full" loading="lazy">
+                        <div class="step-number absolute top-3 left-3 w-10 h-10 rounded-full text-white font-extrabold text-lg flex items-center justify-center shadow-md">1</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-2">Place Sensors</h3>
+                    <p class="text-gray-600 text-sm">Pop the pre-calibrated sensor nodes into your soil beds. Each node covers up to 100 sq ft — fits any greenhouse size, from hobby bench to commercial tunnel.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="relative mx-auto w-48 h-48 rounded-2xl overflow-hidden shadow-lg mb-6">
+                        <img src="https://loremflickr.com/400/400/smartphone,app,wifi,iot" alt="Connect to WiFi with smartphone" class="object-cover w-full h-full" loading="lazy">
+                        <div class="step-number absolute top-3 left-3 w-10 h-10 rounded-full text-white font-extrabold text-lg flex items-center justify-center shadow-md">2</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-2">Connect to Wi‑Fi</h3>
+                    <p class="text-gray-600 text-sm">Open the app, scan the QR code on your hub, and enter your Wi‑Fi password. That's it. The system auto-discovers all nodes in under 60 seconds.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="relative mx-auto w-48 h-48 rounded-2xl overflow-hidden shadow-lg mb-6">
+                        <img src="https://loremflickr.com/400/400/thriving,plants,greenhouse,healthy" alt="Thriving plants with stable metrics" class="object-cover w-full h-full" loading="lazy">
+                        <div class="step-number absolute top-3 left-3 w-10 h-10 rounded-full text-white font-extrabold text-lg flex items-center justify-center shadow-md">3</div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-2">Watch It Grow</h3>
+                    <p class="text-gray-600 text-sm">Kick back. Your dashboard shows stable metrics in real time. The system adjusts automatically — and you get notified only when something needs your attention.</p>
+                </div>
+            </div>
+
+            <!-- Compatibility trust anchor -->
+            <div class="mt-16 text-center">
+                <p class="text-gray-500 text-sm mb-3">Works seamlessly with your existing smart home setup</p>
+                <div class="flex flex-wrap items-center justify-center gap-6">
+                    <span class="inline-flex items-center gap-2 bg-white rounded-full px-5 py-2 shadow-sm text-sm font-medium text-gray-700">
+                        <span class="text-blue-500 text-lg">⌂</span> HomeAssistant
+                    </span>
+                    <span class="inline-flex items-center gap-2 bg-white rounded-full px-5 py-2 shadow-sm text-sm font-medium text-gray-700">
+                        <span class="text-blue-400 text-lg">●</span> Alexa
+                    </span>
+                    <span class="inline-flex items-center gap-2 bg-white rounded-full px-5 py-2 shadow-sm text-sm font-medium text-gray-700">
+                        <span class="text-green-500 text-lg">🏠</span> Google Home
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-4">
+                <span class="inline-block text-yellow-500 text-lg mb-2">★★★★★</span>
+                <span class="text-gray-500 text-sm ml-2">4.9/5 stars from early adopters</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-dark text-center mb-4">
+                Join Growers Who've Taken the Stress Out of Gardening
+            </h2>
+            <p class="text-gray-500 text-center mb-12">Featured in r/gardening and r/homeautomation communities</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-sm testimonial-card border border-gray-100">
+                    <div class="text-yellow-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">
+                        "Since installing the system, I haven't lost a single orchid tray. It feels like having a personal greenhouse assistant."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold">MS</div>
+                        <div>
+                            <p class="font-semibold text-primary-dark text-sm">Miguel S.</p>
+                            <p class="text-gray-400 text-xs">Hobbyist Orchid Grower</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-sm testimonial-card border border-gray-100">
+                    <div class="text-yellow-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">
+                        "My microgreen business margins improved 20% because I no longer lose batches to humidity swings. The automated alerts saved me hours of daily checks."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center text-accent font-bold">SL</div>
+                        <div>
+                            <p class="font-semibold text-primary-dark text-sm">Sara L.</p>
+                            <p class="text-gray-400 text-xs">Small-Scale Commercial Grower</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-sm testimonial-card border border-gray-100">
+                    <div class="text-yellow-400 text-lg mb-4">★★★★★</div>
+                    <p class="text-gray-700 italic mb-6 leading-relaxed">
+                        "I was tired of cobbling together Raspberry Pi scripts that broke every other week. This solution just works."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-secondary/40 rounded-full flex items-center justify-center text-primary font-bold">DK</div>
+                        <div>
+                            <p class="font-semibold text-primary-dark text-sm">David K.</p>
+                            <p class="text-gray-400 text-xs">Home Automation Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FINAL CTA ========== -->
+    <section id="cta" class="py-20 bg-gradient-to-br from-primary-dark via-primary to-primary-dark">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4">
+                Ready to Never Lose Another Plant?
+            </h2>
+            <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto">
+                Join the waitlist and get <strong class="text-accent">30 days free</strong> when we launch. No credit card required.
+            </p>
+
+            <!-- Waitlist form -->
+            <div class="bg-white rounded-2xl p-8 shadow-2xl max-w-md mx-auto mb-8">
+                <form class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('thank-you').classList.remove('hidden'); this.classList.add('hidden');">
+                    <input type="email" placeholder="Enter your email address" required class="w-full px-5 py-3.5 rounded-xl border border-gray-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                    <button type="submit" class="btn-accent w-full bg-accent text-primary-dark text-lg font-bold px-6 py-3.5 rounded-xl shadow-lg transition-all duration-300">
+                        Automate Your Yield Today
+                    </button>
+                </form>
+                <div id="thank-you" class="hidden text-center py-4">
+                    <div class="text-5xl mb-3">🎉</div>
+                    <p class="text-primary-dark font-bold text-xl mb-1">You're on the list!</p>
+                    <p class="text-gray-500 text-sm">We'll reach out soon with your early-access details.</p>
+                </div>
+            </div>
+
+            <p class="text-white/60 text-sm mb-6">🔥 Limited early‑adopter spots available.</p>
+            <a href="#" class="text-white/80 underline hover:text-white transition-colors text-sm">Prefer to talk? Schedule a demo with a grow specialist →</a>
+        </div>
+    </section>
+
+    <!-- ========== TRUST SEALS STRIP ========== -->
+    <div class="bg-gray-100 py-6">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+            <span class="flex items-center gap-2">🔒 Secure 256-bit SSL</span>
+            <span class="flex items-center gap-2">🔄 30-day money-back guarantee</span>
+            <span class="flex items-center gap-2">📡 Built on reliable IoT standards</span>
+        </div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-primary-dark text-white/70 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <span class="text-lg font-bold text-white">GreenGuard</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+                <div class="flex items-center gap-4 text-xl">
+                    <a href="#" class="hover:text-white transition-colors" aria-label="Instagram">📷</a>
+                    <a href="#" class="hover:text-white transition-colors" aria-label="Pinterest">📌</a>
+                    <a href="#" class="hover:text-white transition-colors" aria-label="Reddit">🤖</a>
+                    <a href="#" class="hover:text-white transition-colors" aria-label="Discord">💬</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-white/10 text-center text-xs text-white/40">
+                &copy; 2026 GreenGuard IoT. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
